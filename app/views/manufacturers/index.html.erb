@@ -4,4 +4,10 @@
     
     <li><%= link_to m.name, m %></li>
   <% end %>
+
+  <% if @manufacturers.empty? %>
+    <p>Nenhum fabricante cadastrado</p>
+  <% end %>
+
+  <%= link_to 'Voltar', root_path%>
 </ul>
