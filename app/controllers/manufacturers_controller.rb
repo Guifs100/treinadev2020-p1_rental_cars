@@ -23,6 +23,14 @@ class ManufacturersController < ApplicationController
   end
 
   def edit
+    @manufacturer = Manufacturer.find(params[:id])
+  end
+
+  # PATCH ou PUT
+  def update
+    @manufacturer = Manufacturer.find(params[:id])
+    @manufacturer.update(manufacturer_params)
+    redirect_to @manufacturer
   end
 
   private
