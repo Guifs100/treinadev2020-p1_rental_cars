@@ -28,6 +28,14 @@ feature 'Admin view car categories' do
     click_on 'Categoria A'
 
     #Assert
+    expect(page).to have_css('h1')
+    expect(page).to have_css('header h1', text: 'Categoria A')
+    expect(page).to have_css('dd:nth-child(2)', text: 'R$ 50,00')
+    expect(page).to have_css('dd:nth-child(4)', text: 'R$ 50,00')
+    expect(page).to have_css('dd:nth-child(6)', text: 'R$ 30,00')
+    expect(page).to have_css('dd:nth-of-type(1)', text: 'R$ 50,00')
+    expect(page).to have_css('dd:nth-of-type(2)', text: 'R$ 50,00')
+    expect(page).to have_css('dd:nth-of-type(3)', text: 'R$ 30,00')
     expect(page).to have_content 'Categoria A'
     expect(page).to have_content 'Diária: R$ 50,00'
     expect(page).to have_content 'Seguro do Carro: R$ 50,00'
