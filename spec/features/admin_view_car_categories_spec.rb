@@ -18,12 +18,20 @@ feature 'Admin view car categories' do
     expect(page).to have_content 'R$ 70,00'
   end
 
-  xscenario 'view item details' do
+  scenario 'view car categoty details' do
     #Arrange
+    CarCategory.create!(name: 'A', daily_rate: 50, car_insurance: 50, third_part_insurance: 30)
 
     #Act
+    visit root_path
+    click_on 'Categorias de Carros'
+    click_on 'Categoria A'
 
     #Assert
+    expect(page).to have_content 'Categoria A'
+    expect(page).to have_content 'Diária: R$ 50,00'
+    expect(page).to have_content 'Seguro do Carro: R$ 50,00'
+    expect(page).to have_content 'Seguro para Terceiros: R$ 30,00'
 
 
   end

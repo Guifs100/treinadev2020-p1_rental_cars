@@ -1,0 +1,14 @@
+<% if @q.blank? || @rental.blank? %>
+  <p><%= "Nenhum resultado encontrado para: #{@q}" %></p>
+
+<% else %>
+<% end %>
+
+<dl>
+  <dt>Código</dt>
+  <dd><%= @rental.code %></dd>
+  <dt>Data de início:</dt>
+  <dd><%= @rental.start_date %></dd>
+  <dt>Código</dt>
+  <dd><%= @rental.end_date %></dd>
+</dl>
