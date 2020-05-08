@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   resources :car_categories, only: [:index, :show]
   # resources :manufacturers, only: [:index, :show, :new, :create, :edit, :update, :destroy]
   resources :manufacturers
-  resources :car_models, only: [:index, :show]
+  resources :car_models, only: [:index, :show, :new, :create]
 
   # get '/rentals/serach', to: 'rental#search'
   resources :rentals, only: [:index, :new, :create] do

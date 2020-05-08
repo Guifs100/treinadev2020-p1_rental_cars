@@ -1,7 +1,8 @@
 <section id='main'>
 <h1>Modelo de Carro <%=@car_model.name%>/</h1>
+
 <dl>
-  <dt>Fabricante: </dt>
+  <dt><%= CarModel.human_attribute_name(:manufacturer) %>: </dt>
   <dd><%= @car_model.manufacturer.name %></dd>
 
   <dt>Ano: </dt>
