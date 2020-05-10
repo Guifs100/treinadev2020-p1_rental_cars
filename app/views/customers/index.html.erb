@@ -1,0 +1,31 @@
+<h1>Clientes</h1>
+  <% # TODO: fazer um teste de index do customer %>
+
+<%= form_with url: search_customers_path, method: :get do |f| %>
+  <% # TODO: Por no I18n *.yml %>
+  <%= f.label :q, 'Buscar' %>
+  <%= f.search_field :q %>
+  <%= f.submit 'Buscar' %>
+
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Email</th>
+      <th>Documento</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @customers.each do |customer| %>
+      <tr id="customer-<%= customer.id %>">
+        <td><%= customer.name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.document %></td>
+        <td><%#= link_to 'Ver Detalhes', cm, id: "details-#{cm.id}" %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

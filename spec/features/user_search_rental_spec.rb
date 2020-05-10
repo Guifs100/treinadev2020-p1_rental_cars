@@ -1,19 +1,19 @@
 require 'rails_helper'
 
 feature 'User search rental' do
-  xscenario 'successfully' do
+  scenario 'successfully' do
     customer = Customer.create!(name: 'Fulano Sicrano',
                                 document: '185.972.440-03',
                                 email: 'test@teste.com.br')
     car_category = CarCategory.create!(name: 'A', daily_rate: 100,
-                                       car_incurance: 100,
+                                       car_insurance: 100,
                                        third_part_insurance: 100)
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     rental = Rental.create!(customer: customer, car_category: car_category,
                             start_date: 1.day.from_now,
                             end_date: 2.day.from_now)
 
-    aother_rental = Rental.create!(customer: customer, car_category: car_category,
+    another_rental = Rental.create!(customer: customer, car_category: car_category,
                             start_date: 1.day.from_now,
                             end_date: 2.day.from_now)
 
@@ -28,7 +28,7 @@ feature 'User search rental' do
 
   end
 
-  xscenario 'and cannot be blank' do
+  scenario 'and cannot be blank' do
     user = User.create!(email: 'test@test.com.br', password: '12345678')
 
     login_as user, scope: :user
@@ -37,11 +37,11 @@ feature 'User search rental' do
     fill_in 'Código', with: ''
     click_on 'Buscar'
     
-    expect(page).to have_content('Teste não pode ficar em branco')
+    expect(page).to have_content('Nenhum resultado encontrado para:')
 
   end
 
-  xscenario 'and code cannot be found' do
+  scenario 'and code cannot be found' do
     user = User.create!(email: 'test@test.com.br', password: '12345678')
     
 

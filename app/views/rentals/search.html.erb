@@ -1,15 +1,18 @@
-<% if @q.blank? || @rental.blank? %>
-  <p><%= "Nenhum resultado encontrado para: #{@q}" %></p>
+<% if @rental && @q %>
+  <dl>
+    <dt>Código</dt>
+    <dd><%= @rental.code %></dd>
+    <dt>Data de início:</dt>
+    <dd><%= @rental.start_date %></dd>
+    <dt>Data de término:</dt>
+    <dd><%= @rental.end_date %></dd>
+    <dt>Cliente: </dt>
+    <dd><%= @rental.customer.name %></dd>
+    <dt>Categoria:</dt>
+    <dd><%= @rental.car_category.name %></dd>
+  </dl>
 
+  <%#=link_to 'Iniciar', new_rental_car_rental %>
 <% else %>
+  <p><%= "Nenhum resultado encontrado para: #{@q}" %></p>
 <% end %>
-
-<dl>
-  <dt>Código</dt>
-  <dd><%= @rental.code %></dd>
-  <dt>Data de início:</dt>
-  <dd><%= @rental.start_date %></dd>
-  <dt>Código</dt>
-  <dd><%= @rental.end_date %></dd>
-</dl>
-<%=link_to 'Iniciar', new_rental_car_rental %>

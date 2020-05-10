@@ -10,8 +10,6 @@ Rails.application.routes.draw do
 
   # get '/rentals/serach', to: 'rental#search'
   resources :rentals, only: [:index, :new, :create] do
-
-
     get 'search', on: :collection
     resources :car_rentals, only: [:new, :create]
     # get 'start', on: :member
@@ -19,8 +17,8 @@ Rails.application.routes.draw do
   end
 
   resources :customers, only: [:index] do
-
     get 'search', on: :collection
   end
+  
   resources :subsidiaries, only: [:index, :shoow, :new, :create, :edit, :update]
 end

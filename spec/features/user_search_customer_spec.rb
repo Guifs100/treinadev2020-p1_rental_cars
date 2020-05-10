@@ -1,20 +1,20 @@
 require 'rails_helper'
 
 feature 'User search customer' do
-  xscenario 'by exact name' do
-    user = User.creat!(email: 'email@test.com', pssword: '12345678')
-    customer = Customer.creat!(name: 'Fulano Sicrano', 
+  scenario 'by exact name' do
+    user = User.create!(email: 'email@test.com', password: '12345678')
+    customer = Customer.create!(name: 'Fulano Sicrano', 
                                email: 'fulano@email.com', 
                                document: '116.801.156-69')
 
-    another_customer = Customer.creat!(name: 'João da Silva', 
+    another_customer = Customer.create!(name: 'João da Silva', 
                                        email: 'joao@dasilva.com', 
                                        document: '581.280.655-13')
     
     login_as user, scope: :user 
     visit root_path
     click_on 'Clientes'
-    fill_in 'Busca', with: customer.name
+    fill_in 'Buscar', with: customer.name
     click_on 'Buscar'
 
     expect(page).to have_content(customer.name)
@@ -26,12 +26,12 @@ feature 'User search customer' do
   end
 
   xscenario 'by exact name' do
-    user = User.creat!(email: 'email@test.com', pssword: '12345678')
-    customer = Customer.creat!(name: 'Fulano Sicrano', 
+    user = User.create!(email: 'email@test.com', password: '12345678')
+    customer = Customer.create!(name: 'Fulano Sicrano', 
                                email: 'fulano@email.com', 
                                document: '116.801.156-69')
 
-    another_customer = Customer.creat!(name: 'João da Silva', 
+    another_customer = Customer.create!(name: 'João da Silva', 
                                        email: 'joao@dasilva.com', 
                                        document: '581.280.655-13')
     

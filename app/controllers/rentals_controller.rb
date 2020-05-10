@@ -24,7 +24,7 @@ class RentalsController < ApplicationController
 
   def search
     @q = params[:q]
-    @rental = Rental.find_by(code: params[:q].upcase)
+    @rental = Rental.find_by(code: @q.upcase)
     # if @rental.blank? || params[:q].blank?
     #   @rentals = Rental.all
     #   flash.now[:alert] = "Nenhum resultado encontrado para: #{params[:q]}"
