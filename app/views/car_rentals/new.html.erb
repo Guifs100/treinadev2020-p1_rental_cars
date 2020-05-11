@@ -1,0 +1,8 @@
+<%#= form_with model:@car_rental, url: rental_car_rentals_path(@rental), local: true do |f| %>
+<%#OU%>
+<%= form_with model:[@rental, @car_rental], local: true do |f| %>
+  <%= f.label :car_id,'Carro' %>
+  <%= f.collection_select :car_id, @cars, :id, :license_plate  %>
+  <%= f.submit 'Confirmar locação' %>
+
+<% end%>

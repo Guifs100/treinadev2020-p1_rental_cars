@@ -25,7 +25,7 @@ feature 'User search customer' do
     expect(page).not_to have_content(another_customer.document)
   end
 
-  xscenario 'by exact name' do
+  scenario 'by partial name' do
     user = User.create!(email: 'email@test.com', password: '12345678')
     customer = Customer.create!(name: 'Fulano Sicrano', 
                                email: 'fulano@email.com', 
@@ -38,7 +38,7 @@ feature 'User search customer' do
     login_as user, scope: :user 
     visit root_path
     click_on 'Clientes'
-    fill_in 'Busca', with: 'fulano'
+    fill_in 'Buscar', with: 'fulano'
     click_on 'Buscar'
 
     expect(page).to have_content(customer.name)
@@ -49,4 +49,7 @@ feature 'User search customer' do
     expect(page).not_to have_content(another_customer.document)
   end
 
+  xscenario 'finds nothing' do
+
+  end
 end

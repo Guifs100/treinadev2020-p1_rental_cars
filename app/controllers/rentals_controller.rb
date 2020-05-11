@@ -32,14 +32,14 @@ class RentalsController < ApplicationController
     # end
   end
 
-  def start
-    @rental = Rental.find(params[:id])
-    # @car = Car.where(car_model: {car_category: @rental.car.category})
-    @car = @rental.car_category.cars
-  end
+  # def start
+  #   @rental = Rental.find(params[:id])
+  #   # @car = Car.where(car_model: {car_category: @rental.car.category})
+  #   @cars = @rental.car_category.cars
+  # end
 
-  def init
+  # def init
     
-    Rental.update(car)
-  end
+  #   Rental.update(car)
+  # end
 end

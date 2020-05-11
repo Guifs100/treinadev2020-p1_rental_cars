@@ -1,25 +1,27 @@
 require 'rails_helper'
 
 feature 'User start rental' do
-  xscenario 'successufully' do
-    car_category = CarcCategory.create!(name: 'A', daily_rate: 30,
+  scenario 'successufully' do
+    manufacturer = Manufacturer.create!(name: 'Fiat')
+
+    car_category = CarCategory.create!(name: 'A', daily_rate: 100,
                                         car_insurance: 100,
                                         third_part_insurance: 100)
-    car_model = CarModel.create!(name: 'Uno', year: 2020,
+    car_model = CarModel.create!(name: 'Uno', year: 2020, fuel_type: 'Flex',
                                  manufacturer: manufacturer,
                                  motorization: '1.0',
                                  car_category: car_category)
+
+    car = Car.create!(license_plate: 'ABC124', color: 'Branco', 
+                      car_model: car_model, milage: 0)
 
     customer = Customer.create!(name: 'Fulano Sicrano',
                                 document: '185.972.440-03',
                                 email: 'test@teste.com.br')
 
-    car = Car.create!(license_plate: 'ABC124', color: 'Branco', 
-                      car_model: car_model, milage: 0)
-
     rental = Rental.create!(customer: customer, car_category: car_category,
-                            star_date: 1.day.from.now,
-                            end_date: 2.days.from.now)
+                            start_date: 1.day.from_now,
+                            end_date: 2.days.from_now)
 
     user = User.create!(email: 'test@test.com.br', password: '12345678')
 
