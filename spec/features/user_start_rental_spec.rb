@@ -41,28 +41,24 @@ feature 'User start rental' do
   end
 
   xscenario 'from client page' do
-    manufacturer = Manufacturer.create!(name: 'Fiat')
+    #TODO: teste feito com gem factory
+    manufacturer = create(:manufacturer)
+    # other_manufacturer = create(:manufacturer)
+    # manufacturer = create(:manufacturer, name: 'Fiat')
 
-    car_category = CarCategory.create!(name: 'A', daily_rate: 100,
-                                        car_insurance: 100,
-                                        third_part_insurance: 100)
-    car_model = CarModel.create!(name: 'Uno', year: 2020, fuel_type: 'Flex',
-                                 manufacturer: manufacturer,
-                                 motorization: '1.0',
-                                 car_category: car_category)
+    car_category = create(:car_category, name: 'A')
+    car_model = create(:car_model, manufacturer: manufacturer,
+                       car_category: car_category)
+    car = create(:car, license_plate: 'ABC124', car_model: car_model)
+    customer = create(name: 'Fulano Sicrano', email: 'test@teste.com.br')
+    rental = create(:rental, customer: customer, car_category: car_category)
+    user = create(:user, email: 'test@test.com.br')
 
-    car = Car.create!(license_plate: 'ABC124', color: 'Branco', 
-                      car_model: car_model, milage: 0)
-
-    customer = Customer.create!(name: 'Fulano Sicrano',
-                                document: '185.972.440-03',
-                                email: 'test@teste.com.br')
-
-    rental = Rental.create!(customer: customer, car_category: car_category,
-                            start_date: 1.day.from_now,
-                            end_date: 2.days.from_now)
-
-    user = User.create!(email: 'test@test.com.br', password: '12345678')
+    # #OU
+    # car = create(:car, license_plate: 'ABC124', car_model: car_model)
+    # customer = create(name: 'Fulano Sicrano', email: 'test@teste.com.br')
+    # rental = create(:rental, customer: customer, car_category: car.car_model.car_category)
+    # user = create(:user, email: 'test@test.com.br')
 
     # TODO: Fazer no show ao inves do index
     login_as user, scope: :user

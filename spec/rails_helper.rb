@@ -1,6 +1,15 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
+
+
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter 'app/mailers'
+  add_filter 'app/jobs'
+  add_filter 'app/channels'
+end
+
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
 abort("The Rails environment is running in production mode!") if Rails.env.production?
@@ -36,6 +45,7 @@ RSpec.configure do |config|
 
   #Para usar o devise paraa teste com login
   config.include Warden::Test::Helpers
+  config.include FactoryBot::Syntax::Methods
 
 
 
