@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'Admin register rental' do
-  scenario 'successufully' do
+  xscenario 'successufully' do
     customer = Customer.create!(name: 'Fulano Sicrano', document: '185.972.440-03',
                                 email: 'test@test.com.br')
 
@@ -19,7 +19,9 @@ feature 'Admin register rental' do
     fill_in 'Data de término', with: '29/05/2030'
     select customer.name, from: 'Cliente'
     select car_category.name, from: 'Categoria'
+    expect(RentalsMailers).to receive(:scheduled.and_call_original)
     click_on 'Enviar'
+
 
     expect(page).to have_content('Data de Inicío: 27/05/2030')
     expect(page).to have_content('Data de Término: 29/05/2030')
@@ -32,7 +34,7 @@ feature 'Admin register rental' do
   end
 
   
-  scenario 'and must be authenticated' do
+  xscenario 'and must be authenticated' do
     visit new_rental_path
 
     expect(current_path).to eq(new_user_session_path)

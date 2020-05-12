@@ -6,6 +6,7 @@ class RentalsController < ApplicationController
   end
 
   def show
+    @rental = Rental.find(params[:id])
   end
 
   def new
@@ -19,6 +20,7 @@ class RentalsController < ApplicationController
                                            :end_date,
                                            :customer_id,
                                            :car_category_id))
+    RentalsMailer.with(rental: @rental).scheduled.deliver_now
     redirect_to rentals_path
   end
 

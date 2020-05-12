@@ -12,6 +12,13 @@
   <body>
     <nav>
       <% if user_signed_in? %>
+
+      <%# TODO: personalizar se é admin ou user %>
+        <%# if current.admin? %>
+          <%# TODO: mover todos os links admin %>
+          <%# TODO: criar filiais %>
+          <%#= link_to 'Filiais'%>
+        <%# end %>
       <%# TODO: mover todos os links de Index home para %>
         <%= link_to 'Locações', rentals_path %>
         <%= link_to 'Sair', destroy_user_session_path, method: :delete %>

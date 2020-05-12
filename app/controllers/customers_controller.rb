@@ -3,6 +3,10 @@ class CustomersController < ApplicationController
     @customers = Customer.all
   end
 
+  def show
+    @Customer = Customer
+  end
+
   def search
     # byebug
     # @customers = Customer.where(name: params[:q])

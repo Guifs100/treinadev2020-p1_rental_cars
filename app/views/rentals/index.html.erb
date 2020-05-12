@@ -8,18 +8,5 @@
   <%= f.submit'Buscar' %>
 <% end %>
 
-<% @rentals.each do  |rental| %>
-  <dl>
+<%= render @rentals %>
   
-    <dt>Código</dt>
-    <dd><%= rental.code %></dd>
-    <dt>Data de Inicío:</dt>
-    <dd><%= l rental.start_date %></dt>
-    <dt>Data de Término:</dt>
-    <dd><%= l rental.end_date %></dt>
-    <dt>Cliente:</dt>
-    <dd><%= rental.customer.name%></dt>
-    <dt>Categoria:</dt>
-    <dd><%= rental.car_category.name %></dt>
-  </dl>
-<% end %>

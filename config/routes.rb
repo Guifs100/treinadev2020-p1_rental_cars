@@ -9,14 +9,14 @@ Rails.application.routes.draw do
   resources :car_models, only: [:index, :show, :new, :create]
 
   # get '/rentals/serach', to: 'rental#search'
-  resources :rentals, only: [:index, :new, :create] do
+  resources :rentals, only: %i[index show new create] do
     get 'search', on: :collection
     resources :car_rentals, only: [:new, :create]
     # get 'start', on: :member
     # post 'init', on: :member
   end
 
-  resources :customers, only: [:index] do
+  resources :customers, only: [:index, :show] do
     get 'search', on: :collection
   end
   
