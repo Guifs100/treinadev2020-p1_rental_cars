@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     # post 'init', on: :member
   end
 
-  resources :customers, only: [:index, :show] do
+  resources :customers, only: %i[index show] do
     get 'search', on: :collection
   end
   

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 feature 'User view customer' do
-  xscenario 'and view ' do
+  xscenario 'and view multiple customer' do
     
   end
 

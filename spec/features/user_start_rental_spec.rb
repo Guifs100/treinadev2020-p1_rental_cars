@@ -2,7 +2,9 @@ require 'rails_helper'
 
 feature 'User start rental' do
   scenario 'successufully' do
-    manufacturer = Manufacturer.create!(name: 'Fiat')
+    # manufacturer = Manufacturer.create!(name: 'Fiat')
+    manufacturer = create(:manufacturer)
+
 
     car_category = CarCategory.create!(name: 'A', daily_rate: 100,
                                         car_insurance: 100,
@@ -40,7 +42,7 @@ feature 'User start rental' do
     expect(page).to have_content(user.email)
   end
 
-  xscenario 'from client page' do
+  scenario 'from customer page' do
     #TODO: teste feito com gem factory
     manufacturer = create(:manufacturer)
     # other_manufacturer = create(:manufacturer)
@@ -50,9 +52,12 @@ feature 'User start rental' do
     car_model = create(:car_model, manufacturer: manufacturer,
                        car_category: car_category)
     car = create(:car, license_plate: 'ABC124', car_model: car_model)
-    customer = create(name: 'Fulano Sicrano', email: 'test@teste.com.br')
+    customer = create(:customer, name: 'Fulano Sicrano', email: 'test@teste.com.br')
     rental = create(:rental, customer: customer, car_category: car_category)
     user = create(:user, email: 'test@test.com.br')
+
+    # Usando modulos do support
+    # user = user_login
 
     # #OU
     # car = create(:car, license_plate: 'ABC124', car_model: car_model)
@@ -62,14 +67,13 @@ feature 'User start rental' do
 
     # TODO: Fazer no show ao inves do index
     login_as user, scope: :user
-    visit customers_path(customer)
-    # save_page
+    visit customer_path(customer)
+    # save_page 
     click_on 'Iniciar'
     select car.license_plate, from: 'Carro'
     click_on 'Confirmar locação'
 
-
-    expect(page).to have_content(I18n.l(Time.zone.now, :long))
+    expect(page).to have_content(I18n.l(Time.zone.now,format: :long))
     expect(page).to have_content(car.license_plate)
     expect(page).to have_content(customer.name)
     expect(page).to have_content(customer.email)
